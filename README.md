@@ -1,7 +1,7 @@
 # FarmLoRa
 Checking temperature, humidity values from farm field with using LPWAN technology.
 # Requirements
-- DHT22.py should be located your projects folder or library.
+- DHT22.py, DHT22_old.py, DHT22.pyc should be located your projects folder or library.
 - Pigpio
 - Pyserial
 
