@@ -13,10 +13,10 @@ ser.open()
 
 s = DHT22.sensor(pi, 4)
 s.trigger()
-sleep(.03)
+sleep(2)
 
-x = '{:3.2f}'.format(s.humidity() / 1.)
-y = '{:3.2f}'.format(s.temperature() / 1.)
+x = '{:0.0f}'.format(s.humidity() / 1.)
+y = '{:0.0f}'.format(s.temperature() / 1.)
 
 print (x) # For seeing values.
 print (y) # For seeing values.
