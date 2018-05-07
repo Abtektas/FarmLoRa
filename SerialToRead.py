@@ -3,22 +3,23 @@ from time import sleep
 import datetime
 
 FO = open("SensorValues.txt", "w")
-ser = serial.Serial()
-ser.baudrate = 9600
-ser.port = '/dev/ttyUSB0'
-ser.open()
+Ser = serial.Serial()
+Ser.baudrate = 9600
+Ser.port = '/dev/ttyUSB0'
+Ser.open()
 
-while True:    	    
-	sleep(3)
+while True:    	   
+	
+	sleep(60)
 
-	data = ser.readline(5)
+	Data = Ser.readline(5)
 
-	time = datetime.datetime.now().strftime("%H : %M : %S")
+	Time = datetime.datetime.now().strftime("%H : %M")
 
-	print(data + 'Data came at : ' + time)
+	print(Data + 'Data came at : ' + Time)
 
-	FO.write(data + '\n')
+	FO.write(Data + '\n')
 	FO.flush()
 
 FO.close()
-ser.close()
+Ser.close()
