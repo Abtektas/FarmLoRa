@@ -32,10 +32,10 @@ def stats(label):
 				xrw = 'Temperature : '+ xstr           
 				yrw = 'Humidity : ' + ystr
 
-		time = datetime.datetime.now().strftime("%H : %M : %S")		
+		time = datetime.datetime.now().strftime("%H : %M")		
 		label2.config(text = 'Data came at ' + time)
 		label.config(text = xrw + '\n' + yrw)
-		label.after(1000, count)
+		label.after(60000, count)
 		
 	count()
  
