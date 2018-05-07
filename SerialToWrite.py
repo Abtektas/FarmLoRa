@@ -1,29 +1,36 @@
 import pigpio
 import serial
 from time import sleep
-
-pi = pigpio.pi()
-
+import datetime
 import DHT22 
 
-ser = serial.Serial()
-ser.baudrate = 9600
-ser.port = '/dev/ttyUSB0'
-ser.open()
+Pi = pigpio.pi()
 
-s = DHT22.sensor(pi, 4)
-s.trigger()
-sleep(2)
+Ser = serial.Serial()
+Ser.baudrate = 9600
+Ser.port = '/dev/ttyUSB0'
+Ser.open()
 
-x = '{:0.0f}'.format(s.humidity() / 1.)
-y = '{:0.0f}'.format(s.temperature() / 1.)
+Sensordata = DHT22.sensor(pi, 4)
 
-print (x) # For seeing values.
-print (y) # For seeing values.
+while True:
+	
+	Sensordata.trigger() #started getting data from device.
+	sleep(60) #seconds.
 
-ser.write(x.encode()) #encoding to bytes. 
-ser.write(y.encode()) #encoding to bytes.
+	x = '{:0.0f}'.format(Sensordata.temperature() / 1.)
+	y = '{:0.0f}'.format(Sensordata.humidity() / 1.)
+	
+	time = datetime.datetime.now().strftime("%H:%M")
+	
+	print (x + ',' + y + ' : ' + time) # For seeing values and time on terminal.
+	
+	x1 = x + ',' # Sending data values in an order so we can easily use and processing data on Rx device.
+	y1 = y
+	
+	Ser.write(x1.encode()) # Encoding to bytes. 
+	Ser.write(y1.encode()) # Encoding to bytes.
 
-s.cancel()
-pi.stop()
-ser.close()
+Sensordata.cancel()
+Pi.stop()
+Ser.close()
