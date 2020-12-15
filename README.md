@@ -1,5 +1,5 @@
 # FarmLoRa
-Checking temperature, humidity values from farm field with using LPWAN technology.
+Checking temperature, humidity values from farm field with using LoRa protocol.
 
 # Requirements
 - DHT22.py, DHT22_old.py, DHT22.pyc should be located your projects folder or library.
